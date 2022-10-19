@@ -29,10 +29,14 @@ url_add_order='/order/add'
 def create_order(name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
 
     print(name)
+    print(product_name)
+    print(price)
+    print(amount)
+    
     customer = db_session.query(Customer).filter(Customer.customer_name==name).all()
     if not customer:
         print(customer)
-        customer=Customer(customer_name='Tom')
+        customer=Customer(customer_name=name)
         db_session.add(customer)
         db_session.commit()
         db_session.close()

@@ -5,8 +5,10 @@ let submit_button=document.querySelector('#submit_button');
 
 submit_button.addEventListener('click', ()=>{
     let name = document.querySelector('#name').value;
-    console.log(name);
-    order.create_order("tom", "apple", "15", "3").then(resp => {
+    let product = document.querySelector('#product').value;
+    let price = document.querySelector('#price').value;
+    let amount = document.querySelector('#amount').value;
+    order.create_order(name, product, price, amount).then(resp => {
         console.log(resp);
     })
 })

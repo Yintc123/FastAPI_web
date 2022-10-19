@@ -27,7 +27,7 @@ class Customer(Base):
 class Product(Base):
     __tablename__ = "product_table"
     product_id = Column(Integer, primary_key=True, autoincrement=True)
-    product_name = Column(String(40), nullable=False)
+    product_name = Column(String(40), nullable=False, unique=True)
     create_time = Column(DateTime, default=datetime.datetime.utcnow)
 
 # 創建 ORM 物件
