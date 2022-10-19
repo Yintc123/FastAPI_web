@@ -17,11 +17,27 @@ engine = create_engine(url_mysql, echo=True)
 Base = declarative_base()
 
 # 創建 ORM 物件
+class Customer(Base):
+    __tablename__ = "customer_table"
+    customer_id = Column(Integer, primary_key=True, autoincrement=True)
+    customer_name = Column(String(40), nullable=False)
+    create_time = Column(DateTime, default=datetime.datetime.utcnow)
+
+# 創建 ORM 物件
+class Product(Base):
+    __tablename__ = "product_table"
+    product_id = Column(Integer, primary_key=True, autoincrement=True)
+    product_name = Column(String(40), nullable=False)
+    create_time = Column(DateTime, default=datetime.datetime.utcnow)
+
+# 創建 ORM 物件
 class Order(Base):
     __tablename__ = "order_table"
     order_id = Column(Integer, primary_key=True, autoincrement=True)
-    customer_name = Column(String(40), nullable=False)
-    customer_id = Column(Integer, nullable=False)
+    customer_id = Column(Integer, ForeignKey('customer_table.customer_id', ondelete='CASCADE'), nullable=False)
+    product_id = Column(Integer, ForeignKey('product_table.product_id', ondelete='CASCADE'), nullable=False)
+    amount = Column(Integer, nullable=False)
+    price = Column(Integer, nullable=False)
     purchase_time = Column(DateTime, default=datetime.datetime.utcnow)
 
 # 於資料庫創建與 Order 對應的 Table

@@ -1,8 +1,14 @@
 # from flask import Blueprint
 from typing import Optional
 from fastapi import *
-from app.database.db import Order, db_session
+from app.database.db import Order, Customer, Product, db_session
 from pydantic import BaseModel
+
+# api_page = Blueprint('Api', __name__)
+
+# @api_page.route('/endpoint1', methods=['GET'])
+# def getAdsData():
+#     return 'welcome to test'
 
 class Order_Model(BaseModel):
     order_id: Optional[int]
@@ -10,12 +16,6 @@ class Order_Model(BaseModel):
     product_name: str
     amount: int
     price: int
-
-# api_page = Blueprint('Api', __name__)
-
-# @api_page.route('/endpoint1', methods=['GET'])
-# def getAdsData():
-#     return 'welcome to test'
 
 api_page = APIRouter()
 
@@ -26,14 +26,16 @@ def getAdsData():
 # 新增一筆訂單
 url_add_order='/order/add'
 @api_page.post(url_add_order)
-def create_order(order:Order_Model):
+def create_order(name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
 
-    for i in order:
-        print(i)
-    # order=Order(customer_name='Tom', customer_id=0)
-    # db_session.add(order)
-    # db_session.commit()
-    # db_session.close()
+    print(name)
+    customer = db_session.query(Customer).filter(Customer.customer_name==name).all()
+    if not customer:
+        print(customer)
+        customer=Customer(customer_name='Tom')
+        db_session.add(customer)
+        db_session.commit()
+        db_session.close()
 
     return 'welcome to post test'
 
