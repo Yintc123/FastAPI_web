@@ -2,7 +2,7 @@
 from typing import Optional
 from fastapi import *
 from pydantic import BaseModel
-from database.order_db import Order_db
+from app.database.order_db import Order_db
 
 # api_page = Blueprint('Api', __name__)
 
@@ -33,8 +33,8 @@ def create_order(name : str = Form(...), product_name : str = Form(...), price: 
     print(price)
     print(amount)
 
-    # order = Order_db().create_order(name, product_name, price, amount)
-    # print(order)
+    order = Order_db().create_order(name, product_name, price, amount)
+    print(order)
 
     return 'welcome to post test'
 

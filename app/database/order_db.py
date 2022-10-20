@@ -15,7 +15,16 @@ class Order_db:
         print(f"customer：{result_creating_customer} ； product：{result_creating_product}")
         customer_data = Customer_db().get_customer_data(name)
         product_data = Product_db().get_product(product)
-        print(f"customer：{customer_data['customer_id']} ； product：{product_data['product_id']}")
+        print(f"customer：{customer_data.customer_id} ； product：{product_data.product_id}")
+
+        order = Order(customer_id = customer_data.customer_id, 
+                        product_id = product_data.product_id, 
+                        amount = amount, 
+                        price = price)
+        self.db.add(order)
+        db_session.commit()
+        self.close()
+
         return "Order done"
 
     
