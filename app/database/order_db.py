@@ -9,6 +9,20 @@ class Order_db:
     def close(self):
         self.db.close()
 
+    def get_order(self, order_id):
+        order = self.db.query(Customer.customer_name, 
+                                Product.product_name,
+                                Order.amount,
+                                Order.price            
+                            )\
+                            .join(Customer).join(Product)\
+                            .filter(Order.customer_id==Customer.customer_id)\
+                            .filter(Order.product_id==Product.product_id)\
+                            .filter(Order.order_id==order_id).first()
+
+        self.close()
+        return order
+
     def get_orders(self):
         orders = self.db.query(Order.order_id, Customer.customer_name,
                                 Product.product_name, Order.amount, 
@@ -16,6 +30,7 @@ class Order_db:
                         .join(Customer).join(Product)\
                         .filter(Order.customer_id==Customer.customer_id)\
                         .filter(Order.product_id==Product.product_id).all()
+        self.close()
         return orders
 
     def create_order(self, name, product, price, amount):
@@ -31,9 +46,31 @@ class Order_db:
                         amount = amount, 
                         price = price)
         self.db.add(order)
-        db_session.commit()
+        self.db.commit()
         self.close()
 
         return "Order done"
+
+    def modify_order(self, name, product, price, amount, order_id):
+        result_creating_customer = Customer_db().create_customer(name)
+        result_creating_product = Product_db().create_product(product)
+        print(f"customer：{result_creating_customer} ； product：{result_creating_product}")
+        customer_data = Customer_db().get_customer_data(name)
+        product_data = Product_db().get_product(product)
+        print(f"customer：{customer_data.customer_id} ； product：{product_data.product_id}")
+
+        order_info = {
+            "customer_id":customer_data.customer_id,
+            "product_id":product_data.product_id,
+            "amount":amount,
+            "price":price
+        }
+
+        order = db_session.query(Order).filter(Order.order_id==order_id)\
+                            .update(order_info)
+        self.db.commit()
+        self.close()
+
+        return "order modified done"
 
     

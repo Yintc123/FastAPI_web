@@ -1,6 +1,7 @@
 # from flask import Blueprint
 from typing import Optional
 from fastapi import *
+from numpy import product
 from pydantic import BaseModel
 from app.database.order_db import Order_db
 
@@ -24,6 +25,12 @@ api_page = APIRouter()
 def getAdsData():
     return 'welcome to test'
 
+# 查詢特定訂單
+@api_page.get('/order/{order_id}')
+def get_orders(order_id:int):
+    order = Order_db().get_order(order_id)
+    return order
+
 # 查詢所有訂單
 @api_page.get('/orders')
 def get_orders():
@@ -44,7 +51,9 @@ def create_order(name : str = Form(...), product_name : str = Form(...), price: 
     return {"ok":200}
 
 # 修改一筆訂單
-url_modify_order='/order/modify'
+url_modify_order='/order/modify/{order_id}'
 @api_page.patch(url_modify_order)
-def modify_order():
-    return 'welcome to patch test'
+def modify_order(order_id: int, name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
+    order = Order_db().modify_order(name, product_name, price, amount, order_id)
+    print(order)
+    return {"ok":200}
