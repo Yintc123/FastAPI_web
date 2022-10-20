@@ -12,7 +12,7 @@ async function init(){
 }
 
 function add_order_to_table(orders){
-    const table_orders = document.querySelector('#table_orders');
+    const table_orders = document.querySelector('#tbody_orders');
 
     for(let i=0;i<orders.length;i++){
         const tr = create_tr(orders[i]);

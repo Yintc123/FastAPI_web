@@ -11,7 +11,7 @@ submit_button.addEventListener('click', async ()=>{
 
     console.log(order_info)
     if(!order_info || order_info.detail){
-        alert("There's no this order, order_id = " + input_order_id + " .");
+        alert("Error! There's no this order, order_id = " + input_order_id + " .");
         return;
     }
     window.location = url.url_mode['url_order_id'] + input_order_id;
