@@ -35,15 +35,13 @@ url_add_order='/order/add'
 @api_page.post(url_add_order)
 def create_order(name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
 
-    print(name)
-    print(product_name)
-    print(price)
-    print(amount)
+    if not name or not product_name or not price or not amount:
+        return {"error":"請填寫完整資訊"}
 
     order = Order_db().create_order(name, product_name, price, amount)
     print(order)
 
-    return 'welcome to post test'
+    return {"ok":200}
 
 # 修改一筆訂單
 url_modify_order='/order/modify'
