@@ -1,0 +1,35 @@
+version: "3"
+services:
+  orders:
+    image: yintc/orders
+    restart: always
+    build: .
+    ports:
+      - 6060:6060
+    networks:
+      - orders-mysql
+    depends_on:
+      - mysqldb
+    # volumes:
+    #   - /etc/ssl:/FastAPI/ssl
+    # environment:
+    #   DB_HOST: mysqldb
+    #   DB_NAME: spring_boot
+    #   DB_USER: root
+    #   DB_PASSWORD: password
+    #   DB_port: 3306
+    
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:8
+    ports:
+      - 3307:3306
+    networks:
+      - orders-mysql
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: password
+#      MYSQL_PASSWORD: password
+#      MYSQL_USER: root
+networks:
+  orders-mysql:
