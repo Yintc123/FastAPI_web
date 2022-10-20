@@ -1,8 +1,14 @@
 # from flask import Blueprint
 import uvicorn
+import os
+from dotenv import load_dotenv, find_dotenv
 from app import app, templates
 from fastapi import *
 from fastapi.responses import HTMLResponse
+
+# 使用 .env 檔的資料
+load_dotenv(find_dotenv())
+env=os.getenv('MODE')
 
 @app.get("/", response_class=HTMLResponse)
 def index(request:Request):
@@ -21,5 +27,5 @@ def index(request:Request):
 
 if __name__ == '__main__':
     # app.run(host='0.0.0.0')
-    uvicorn.run(app, host='127.0.0.1', port=6060)
+    uvicorn.run(app, host=os.getenv('host_'+env), port=6060)
     

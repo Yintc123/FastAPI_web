@@ -10,7 +10,7 @@ load_dotenv(find_dotenv())
 env=os.getenv('MODE')
 
 # 創建 db 連接
-url_mysql=f"mysql+pymysql://{os.getenv('Database_root_'+env)}:{os.getenv('Database_password_'+env)}@localhost:3306/test"
+url_mysql=f"mysql+pymysql://{os.getenv('Database_root_'+env)}:{os.getenv('Database_password_'+env)}@localhost:{os.getenv('Database_port_'+env)}/test"
 engine = create_engine(url_mysql, echo=True)
 
 # 創建 ORM 模型
