@@ -1,7 +1,7 @@
 # from flask import Blueprint
 from typing import Optional
 from fastapi import *
-from app.database.db import Order, Customer, Product, db_session
+from app.database.customer_db import Customer_db
 from pydantic import BaseModel
 
 # api_page = Blueprint('Api', __name__)
@@ -32,14 +32,6 @@ def create_order(name : str = Form(...), product_name : str = Form(...), price: 
     print(product_name)
     print(price)
     print(amount)
-    
-    customer = db_session.query(Customer).filter(Customer.customer_name==name).all()
-    if not customer:
-        print(customer)
-        customer=Customer(customer_name=name)
-        db_session.add(customer)
-        db_session.commit()
-        db_session.close()
 
     return 'welcome to post test'
 
