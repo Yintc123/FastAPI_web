@@ -26,7 +26,8 @@ def getAdsData():
     return 'welcome to test'
 
 # 查詢特定訂單
-@api_page.get('/order/{order_id}')
+url_order='/order/{order_id}'
+@api_page.get(url_order)
 def get_orders(order_id:int):
     order = Order_db().get_order(order_id)
     return order
@@ -38,7 +39,7 @@ def get_orders():
     return orders
 
 # 新增一筆訂單
-url_add_order='/order/add'
+url_add_order='/order'
 @api_page.post(url_add_order)
 def create_order(name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
 
@@ -51,8 +52,7 @@ def create_order(name : str = Form(...), product_name : str = Form(...), price: 
     return {"ok":200}
 
 # 修改一筆訂單
-url_modify_order='/order/modify/{order_id}'
-@api_page.patch(url_modify_order)
+@api_page.patch(url_order)
 def modify_order(order_id: int, name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
     order = Order_db().modify_order(name, product_name, price, amount, order_id)
     print(order)

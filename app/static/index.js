@@ -13,7 +13,9 @@ async function init(){
     if(is_query_string_existed(url_current)){
         order_id = url_current.split("=")[1];
         const order_info = await order.get_order(order_id);
-        console.log(order_info);
+        if(!order_info){
+            window.location = '/';
+        }
         fill_out_form(order_info);
     }
 }
@@ -28,9 +30,11 @@ submit_button.addEventListener('click', ()=>{
     check_inputed_value(order_info);
 
     order.create_order(name, product, price, amount).then(resp => {
-        if (resp.ok){
-            window.location = "/"
+        if (!resp.ok || resp.detail){
+            show_error();
+            return;
         }
+        window.location = "/"
     })
 })
 
@@ -41,20 +45,25 @@ button_modify.addEventListener('click', async ()=>{
     let amount = document.querySelector('#amount').value;
 
     order.modify_order(name, product, price, amount, order_id).then(resp => {
-        console.log(resp);
+        if(resp.ok){
+            alert("modify the order successfully.")
+        }
     })
 })
 
 function check_inputed_value(data_info){
     for(let i=0;i<data_info.length;i++){
         if (!data_info[i]){
-            console.log("hi123")
-            const error_message = document.querySelector('#error_message');
-            error_message.style.display = 'block';
-            error_message.textContent = "Please fill out the form.";
+            show_error();
             return "please fill all of columns.";
         } 
     }
+}
+
+function show_error(){
+    const error_message = document.querySelector('#error_message');
+    error_message.style.display = 'block';
+    error_message.textContent = "Please fill out the form or fill in the correct values.";
 }
 
 function is_query_string_existed(url){
