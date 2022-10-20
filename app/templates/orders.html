@@ -33,13 +33,27 @@
     </ul>
 
     <div class="kv">
-
+        <div class="container h-100">
+          <div class="row h-100 justify-content-center align-items-center">
+            <table class="bg-light">
+              <tr class="text-center">
+                <td class="col-2 ">Order_id</td>
+                <td class="col-2 ">Customer_name</td>
+                <td class="col-2 ">Product</td>
+                <td class="col-2 ">Price</td>
+                <td class="col-2 ">Amount</td>
+                <td class="col-2 ">Total</td>
+              </tr>
+            </table>
+          </div>
+        </div>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script type="module" src="{{url_for('static', path='/orders.js')}}"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

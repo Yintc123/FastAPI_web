@@ -1,4 +1,4 @@
-from .db import db_session, Order
+from .db import Customer, Product, db_session, Order
 from .customer_db import Customer_db
 from .product_db import Product_db
 
@@ -8,6 +8,15 @@ class Order_db:
 
     def close(self):
         self.db.close()
+
+    def get_orders(self):
+        orders = self.db.query(Order.order_id, Customer.customer_name,
+                                Product.product_name, Order.amount, 
+                                Order.price, (Order.amount*Order.price).label('total'))\
+                        .join(Customer).join(Product)\
+                        .filter(Order.customer_id==Customer.customer_id)\
+                        .filter(Order.product_id==Product.product_id).all()
+        return orders
 
     def create_order(self, name, product, price, amount):
         result_creating_customer = Customer_db().create_customer(name)

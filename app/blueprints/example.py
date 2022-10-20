@@ -16,12 +16,19 @@ class Order_Model(BaseModel):
     product_name: str
     amount: int
     price: int
+    total: int
 
 api_page = APIRouter()
 
 @api_page.get('/endpoint1')
 def getAdsData():
     return 'welcome to test'
+
+# 查詢所有訂單
+@api_page.get('/orders')
+def get_orders():
+    orders = Order_db().get_orders()
+    return orders
 
 # 新增一筆訂單
 url_add_order='/order/add'

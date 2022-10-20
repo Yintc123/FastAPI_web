@@ -1,5 +1,13 @@
 import * as url from './url_module.js';
 
+export async function get_orders(){
+    console.log("get all orders");
+    const url_api_get_orders=url.url_mode['url_api_get_orders'];
+    return fetch(url_api_get_orders).then(response => {
+        return response.json();
+    })
+}
+
 export async function create_order(name, item, price, amount){
     console.log("create order");
     const url_api_create_order=url.url_mode['url_api_create_order'];

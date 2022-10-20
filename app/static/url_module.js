@@ -2,6 +2,7 @@ const url={
     "dev":{
         "url_api_create_order":"http://127.0.0.1:6060/api/order/add",
         "url_api_modify_order":"http://127.0.0.1:6060/api/order/modify",
+        "url_api_get_orders":"http://127.0.0.1:6060/api/orders",
     },
     "prod":{
         "url_api_create_order":"http://127.0.0.1:6060/api/order/add",
