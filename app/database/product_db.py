@@ -23,3 +23,4 @@ class Product_db:
         db_session.add(product)
         db_session.commit()
         self.close()
+        return "Product created"

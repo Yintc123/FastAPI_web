@@ -23,3 +23,4 @@ class Customer_db:
         db_session.add(customer)
         db_session.commit()
         self.close()
+        return "Customer created"

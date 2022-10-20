@@ -1,4 +1,4 @@
-from flask import Flask
+# from flask import Flask
 from .blueprints.example import api_page as api_blueprint
 from fastapi import *
 from fastapi.templating import Jinja2Templates

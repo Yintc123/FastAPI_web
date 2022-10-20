@@ -10,6 +10,12 @@ class Order_db:
         self.db.close()
 
     def create_order(self, name, product, price, amount):
-        pass
+        result_creating_customer = Customer_db().create_customer(name)
+        result_creating_product = Product_db().create_product(product)
+        print(f"customer：{result_creating_customer} ； product：{result_creating_product}")
+        customer_data = Customer_db().get_customer_data(name)
+        product_data = Product_db().get_product(product)
+        print(f"customer：{customer_data['customer_id']} ； product：{product_data['product_id']}")
+        return "Order done"
 
     

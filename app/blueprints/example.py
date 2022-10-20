@@ -1,8 +1,8 @@
 # from flask import Blueprint
 from typing import Optional
 from fastapi import *
-from app.database.customer_db import Customer_db
 from pydantic import BaseModel
+from database.order_db import Order_db
 
 # api_page = Blueprint('Api', __name__)
 
@@ -32,6 +32,9 @@ def create_order(name : str = Form(...), product_name : str = Form(...), price: 
     print(product_name)
     print(price)
     print(amount)
+
+    # order = Order_db().create_order(name, product_name, price, amount)
+    # print(order)
 
     return 'welcome to post test'
 
