@@ -17,6 +17,8 @@ https://orders.yin888.info/
     <br/> <p style="font-weight:bold;color:blue;">* 點擊 Order_id 進入修改訂單頁面</p>
     *   查詢訂單
     <br/>![Query_an_order](README_pictures/Query_an_order.jpg)
+    *   修改訂單
+    <br/>![Query_an_order](README_pictures/Modify_an_order.jpg)
 
 
 ## 網頁架構
