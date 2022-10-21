@@ -7,7 +7,7 @@ class Customer_db:
     def close(self):
         self.db.close()
 
-    async def is_customer_existed(self, name):
+    def is_customer_existed(self, name):
         if self.get_customer_data(name):
             return True
         return False

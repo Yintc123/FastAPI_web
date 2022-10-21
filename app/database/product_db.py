@@ -7,7 +7,7 @@ class Product_db:
     def close(self):
         self.db.close()
 
-    async def is_product_existed(self, product):
+    def is_product_existed(self, product):
         if self.get_product(product):
             return True
         return False
