@@ -1,7 +1,6 @@
 # from flask import Blueprint
 from typing import Optional
 from fastapi import *
-from numpy import product
 from pydantic import BaseModel
 from app.database.order_db import Order_db
 import asyncio

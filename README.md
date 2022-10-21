@@ -27,8 +27,18 @@ https://orders.yin888.info/
     *   EC2
     <br/>可擴展的運算容量，部署網頁應用程式。
 *   Python
+    *   uvicorn
+    <br/>基於 asyncio 開發的一個輕量級高效的 web 伺服器框架。
     *   FastAPI
     <br/>開發網頁應用框架。
+    *   HTMLResponse
+    <br/>FastAPI 回應指定 html 模板的套件 。
+    *   Jinja2Templates
+    <br/>FastAPI 路由導至指定 html 模板的套件 。
+    *   StaticFiles
+    <br/>FastAPI 路由導至指定靜態檔案的套件 。
+    *   pydantic
+    <br/> type hints 為基礎做資料型態驗證的套件，以此套件定義 API 的請求及回應格式（Order_Model）。
     *   asyncio
     <br/>Python 的非同步處理模組，藉由 await 等待過程切換至 Event loop 執行其他 Tasks 。
     *   dotenv

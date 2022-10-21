@@ -1,4 +1,3 @@
-import asyncio
 from .db import db_session, Customer
 
 class Customer_db:
