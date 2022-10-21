@@ -1,4 +1,3 @@
-console.log("hi")
 import * as order from './order_module.js';
 
 const submit_button=document.querySelector('#submit_button');
