@@ -10,12 +10,12 @@ https://orders.yin888.info/
 *  訪客
     *   列表選單（左上角）
     <br/>![list](README_pictures/list.jpg)
-    *   新增訂單
+    *   新增訂單（Add an oder）
     <br/>![Add_an_order](README_pictures/Add_an_order.jpg)
-    *   訂單總攬
+    *   訂單總攬（Check oders）
     <br/>![Check_orders](README_pictures/Check_orders.jpg)
     <br/> <p style="font-weight:bold;color:blue;">* 點擊 Order_id 進入修改訂單頁面</p>
-    *   查詢訂單
+    *   查詢訂單（Query an oder）
     <br/>![Query_an_order](README_pictures/Query_an_order.jpg)
     *   修改訂單
     <br/>![Query_an_order](README_pictures/Modify_an_order.jpg)
