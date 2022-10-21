@@ -49,12 +49,12 @@ https://orders.yin888.info/
     <br/>Python 的 ORM 套件，可以避免 SQL Injection。
 *   JavaScript
     *   Bootstrap
-    <br/> Dom 模組建立及排版。
+    <br/> HTML 的 Dom 建立及排版。
     *   AJAX
     <br/> Asynchronous JavaScript and XML，處理對 Server's API 的非同步請求。
 *   Others
     *   Docker
-    <br/>輕量級的虛擬化技術，跨平台部屬專案，此專案使用 dcoker-compose 將 Web app 與 MySQL 同時部署置EC2。
+    <br/>輕量級的虛擬化技術，跨平台部屬專案，此專案使用 dcoker-compose 將 Web app 與 MySQL 同時部署至 EC2。
     *   nginx
     <br/>網頁伺服器，此專案應用其反向代理 ( Reverse Proxy ) 的功能。
     *   git
