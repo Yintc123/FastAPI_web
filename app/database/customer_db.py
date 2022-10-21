@@ -7,16 +7,16 @@ class Customer_db:
     def close(self):
         self.db.close()
 
-    def is_customer_existed(self, name):
+    async def is_customer_existed(self, name):
         if self.get_customer_data(name):
             return True
         return False
 
-    def get_customer_data(self, name):
+    async def get_customer_data(self, name):
         customer = self.db.query(Customer).filter(Customer.customer_name == name).first()
         return customer
 
-    def create_customer(self, name):
+    async def create_customer(self, name):
         if self.is_customer_existed(name):
             return "Customer existed"
         customer=Customer(customer_name=name)

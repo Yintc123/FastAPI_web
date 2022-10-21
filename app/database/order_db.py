@@ -9,7 +9,7 @@ class Order_db:
     def close(self):
         self.db.close()
 
-    def get_order(self, order_id):
+    async def get_order(self, order_id):
         order = self.db.query(Customer.customer_name, 
                                 Product.product_name,
                                 Order.amount,
@@ -23,7 +23,7 @@ class Order_db:
         self.close()
         return order
 
-    def get_orders(self):
+    async def get_orders(self):
         orders = self.db.query(Order.order_id, Customer.customer_name,
                                 Product.product_name, Order.amount, 
                                 Order.price, (Order.amount*Order.price).label('total'))\
@@ -33,7 +33,7 @@ class Order_db:
         self.close()
         return orders
 
-    def create_order(self, name, product, price, amount):
+    async def create_order(self, name, product, price, amount):
         result_creating_customer = Customer_db().create_customer(name)
         result_creating_product = Product_db().create_product(product)
         print(f"customer：{result_creating_customer} ； product：{result_creating_product}")
@@ -51,7 +51,7 @@ class Order_db:
 
         return "Order done"
 
-    def modify_order(self, name, product, price, amount, order_id):
+    async def modify_order(self, name, product, price, amount, order_id):
         result_creating_customer = Customer_db().create_customer(name)
         result_creating_product = Product_db().create_product(product)
         print(f"customer：{result_creating_customer} ； product：{result_creating_product}")

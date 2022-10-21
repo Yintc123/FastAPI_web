@@ -4,6 +4,7 @@ from fastapi import *
 from numpy import product
 from pydantic import BaseModel
 from app.database.order_db import Order_db
+import asyncio
 
 # api_page = Blueprint('Api', __name__)
 
@@ -28,32 +29,30 @@ def getAdsData():
 # 查詢特定訂單
 url_order='/order/{order_id}'
 @api_page.get(url_order)
-def get_orders(order_id:int):
-    order = Order_db().get_order(order_id)
+async def get_orders(order_id:int):
+    order = await asyncio.create_task(Order_db().get_order(order_id))
     return order
 
 # 查詢所有訂單
 @api_page.get('/orders')
-def get_orders():
-    orders = Order_db().get_orders()
+async def get_orders():
+    orders = await Order_db().get_orders()
     return orders
 
 # 新增一筆訂單
 url_add_order='/order'
 @api_page.post(url_add_order)
-def create_order(name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
+async def create_order(name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
 
     if not name or not product_name or not price or not amount:
         return {"error":"請填寫完整資訊"}
 
-    order = Order_db().create_order(name, product_name, price, amount)
-    print(order)
+    order = await Order_db().create_order(name, product_name, price, amount)
 
     return {"ok":200}
 
 # 修改一筆訂單
 @api_page.patch(url_order)
-def modify_order(order_id: int, name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
-    order = Order_db().modify_order(name, product_name, price, amount, order_id)
-    print(order)
+async def modify_order(order_id: int, name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
+    order = await Order_db().modify_order(name, product_name, price, amount, order_id)
     return {"ok":200}
