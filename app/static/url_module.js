@@ -12,8 +12,9 @@ const url={
         "url_api_get_orders":"https://" + domain_name +"/api/orders",
     }
 }
-
+// 生產模式
 // const env="prod";
+// 開發模式
 const env="dev";
 
 export const url_mode=url[env];

@@ -5,12 +5,7 @@ from pydantic import BaseModel
 from app.database.order_db import Order_db
 import asyncio
 
-# api_page = Blueprint('Api', __name__)
-
-# @api_page.route('/endpoint1', methods=['GET'])
-# def getAdsData():
-#     return 'welcome to test'
-
+# 使用 pydantic 定義 request 和 response 的資料型態
 class Order_Model(BaseModel):
     order_id: Optional[int]
     name: str
@@ -19,8 +14,10 @@ class Order_Model(BaseModel):
     price: int
     total: int
 
+# FastAPI 的 Blueprint
 api_page = APIRouter()
 
+# /endpoint1 為測試用的 API
 @api_page.get('/endpoint1')
 def getAdsData():
     return 'welcome to test'
@@ -43,6 +40,7 @@ url_add_order='/order'
 @api_page.post(url_add_order)
 async def create_order(name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
 
+    # 表單未填寫正確
     if not name or not product_name or not price or not amount:
         return {"error":"請填寫完整資訊"}
 
@@ -53,5 +51,10 @@ async def create_order(name : str = Form(...), product_name : str = Form(...), p
 # 修改一筆訂單
 @api_page.patch(url_order)
 async def modify_order(order_id: int, name : str = Form(...), product_name : str = Form(...), price: int = Form(...), amount: int = Form(...)):
+    
+    # 表單未填寫正確
+    if not name or not product_name or not price or not amount:
+        return {"error":"請填寫完整資訊"}
+    
     order = await asyncio.create_task(Order_db().modify_order(name, product_name, price, amount, order_id))
     return {"ok":200}
