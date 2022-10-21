@@ -14,6 +14,7 @@ https://orders.yin888.info/
     <br/>![Add_an_order](README_pictures/Add_an_order.jpg)
     *   訂單總攬
     <br/>![Check_orders](README_pictures/Check_orders.jpg)
+    <br/> * 點擊 Order_id 進入修改訂單頁面
     *   查詢訂單
     <br/>![Query_an_order](README_pictures/Query_an_order.jpg)
 
@@ -28,18 +29,18 @@ https://orders.yin888.info/
 *   Python
     *   FastAPI
     <br/>開發網頁應用框架。
-    *   concurrent.futures
-    <br/>Python 的平行處理模組，同時執行多個任務 ( tasks ) 。
+    *   asyncio
+    <br/>Python 的非同步處理模組，藉由 await 等待過程切換至 Event loop 執行其他 Task 。
     *   dotenv
     <br/>取用.env的資訊，避免洩漏私密資訊。
-    *   mysql.connector.pooling
-    <br/>使用連線池，有效利用資料庫資源。
+    *   sqlAlchemy
+    <br/>Python 的 ORM 套件，可以避免 SQL Injection。
 *   JavaScript
     *   Bootstrap
     <br/> Dom 模組建立及排版
 *   Others
     *   Docker
-    <br/>輕量級的虛擬化技術，跨平台部屬專案。
+    <br/>輕量級的虛擬化技術，跨平台部屬專案，此專案使用 dcoker-compose 將 Web app 與 MySQL 同時部署置EC2。
     *   nginx
     <br/>網頁伺服器，此專案應用其反向代理 ( Reverse Proxy ) 的功能。
     *   git
