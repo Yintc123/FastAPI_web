@@ -1,3 +1,4 @@
+import asyncio
 from .db import db_session, Customer
 
 class Customer_db:
@@ -12,15 +13,19 @@ class Customer_db:
             return True
         return False
 
-    async def get_customer_data(self, name):
+    def get_customer_data(self, name):
+        print("****get customer start")
         customer = self.db.query(Customer).filter(Customer.customer_name == name).first()
+        print("****get customer end")
         return customer
 
     async def create_customer(self, name):
+        print("****create customer start")
         if self.is_customer_existed(name):
             return "Customer existed"
         customer=Customer(customer_name=name)
         db_session.add(customer)
         db_session.commit()
         self.close()
+        print("****create customer end")
         return "Customer created"

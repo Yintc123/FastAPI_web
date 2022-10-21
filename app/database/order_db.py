@@ -37,12 +37,8 @@ class Order_db:
     async def create_order(self, name, product, price, amount):
         result_creating_customer = await asyncio.create_task(Customer_db().create_customer(name))
         result_creating_product = await asyncio.create_task(Product_db().create_product(product))
-        print(f"customer：{result_creating_customer} ； product：{result_creating_product}")
-        customer_data = await asyncio.create_task(Customer_db().get_customer_data(name))
-        product_data = await asyncio.create_task(Product_db().get_product(product))
-        print(customer_data.customer_id)
-        print(product_data)
-        print(f"customer：{customer_data.customer_id} ； product：{product_data.product_id}")
+        customer_data = Customer_db().get_customer_data(name)
+        product_data = Product_db().get_product(product)
 
         order = Order(customer_id = customer_data.customer_id, 
                         product_id = product_data.product_id, 
@@ -57,10 +53,8 @@ class Order_db:
     async def modify_order(self, name, product, price, amount, order_id):
         result_creating_customer = await asyncio.create_task(Customer_db().create_customer(name))
         result_creating_product = await asyncio.create_task(Product_db().create_product(product))
-        print(f"customer：{result_creating_customer} ； product：{result_creating_product}")
-        customer_data = await asyncio.create_task(Customer_db().get_customer_data(name))
-        product_data = await asyncio.create_task(Product_db().get_product(product))
-        print(f"customer：{customer_data.customer_id} ； product：{product_data.product_id}")
+        customer_data = Customer_db().get_customer_data(name)
+        product_data = Product_db().get_product(product)
 
         order_info = {
             "customer_id":customer_data.customer_id,

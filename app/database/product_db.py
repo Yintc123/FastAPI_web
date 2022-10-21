@@ -1,3 +1,4 @@
+import asyncio
 from .db import db_session, Product
 
 class Product_db:
@@ -12,7 +13,7 @@ class Product_db:
             return True
         return False
 
-    async def get_product(self, product):
+    def get_product(self, product):
         pd = self.db.query(Product).filter(Product.product_name == product).first()
         return pd
 
