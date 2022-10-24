@@ -45,8 +45,8 @@ https://orders.yin888.info/
     <br/>Python 的非同步處理模組，藉由 await 等待過程切換至 Event loop 執行其他 Tasks 。
     *   dotenv
     <br/>取用.env的資訊，避免洩漏私密資訊。
-    *   sqlAlchemy
-    <br/>Python 的 ORM 套件，可以避免 SQL Injection。
+    *   SQLAlchemy
+    <br/>Python 的 ORM 套件，以自定義的類別屬性對應 Table 的欄位屬性創造 Table；也可以避免 SQL Injection。
 *   JavaScript
     *   Bootstrap
     <br/> HTML 的 Dom 建立及排版。
