@@ -13,9 +13,9 @@ const url={
     }
 }
 // 生產模式
-// const env="prod";
+const env="prod";
 // 開發模式
-const env="dev";
+// const env="dev";
 
 export const url_mode=url[env];
 export default url_mode;
