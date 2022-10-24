@@ -62,7 +62,8 @@ https://orders.yin888.info/
 ## 問題解決
 ### 發生問題：500 Internal Server Error
 ### 尋找真因：
-*   啟動 Web App 時，各功能運作正常
+- [X] 使用 DockerCompose 啟動 Web App 及 MySQL 時，各功能運作正常
+    *   排除 Web app 及 MySQL 問題
 *   異常發生時，確認 Container 是否異常關閉
 *   docker log 發現 Web app 與 MySQL 連線異常
 *   推測為連線閒置導致 MySQL 關閉連線，MySQL 預設的 interactive_timeout 及 wait_timeout 時間為8小時（https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html）
