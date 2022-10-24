@@ -11,7 +11,8 @@ env=os.getenv('MODE')
 
 # 創建 db 連接
 url_mysql=f"mysql+pymysql://{os.getenv('Database_root_'+env)}:{os.getenv('Database_password_'+env)}@{os.getenv('Database_host_'+env)}:{os.getenv('Database_port_'+env)}/test"
-engine = create_engine(url_mysql, echo=True)
+# pool_pre_ping 開啟：每次從 Connection Pool 取得連線時，就試著執行一次相當於 SELECT 1 的 SQL ，如果有問題，就可以重新建立新的連線取代失效的連線
+engine = create_engine(url_mysql, echo=True, pool_pre_ping=True)
 
 # 創建 ORM 模型
 Base = declarative_base()

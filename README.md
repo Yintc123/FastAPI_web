@@ -59,3 +59,9 @@ https://orders.yin888.info/
     <br/>網頁伺服器，此專案應用其反向代理 ( Reverse Proxy ) 的功能。
     *   git
     <br/>版本控管工具。
+## 問題解決
+### 發生問題：500 Internal Server Error
+### 尋找真因：
+*   
+### 解決方案：
+-   
