@@ -11,8 +11,12 @@ env=os.getenv('MODE')
 
 # 創建 db 連接
 url_mysql=f"mysql+pymysql://{os.getenv('Database_root_'+env)}:{os.getenv('Database_password_'+env)}@{os.getenv('Database_host_'+env)}:{os.getenv('Database_port_'+env)}/test"
-# pool_pre_ping 開啟：每次從 Connection Pool 取得連線時，就試著執行一次相當於 SELECT 1 的 SQL ，如果有問題，就可以重新建立新的連線取代失效的連線
-engine = create_engine(url_mysql, echo=True, pool_pre_ping=True)
+# echo = True：將所有執行的過程輸出到 cmd or terminal
+# pool_pre_ping = True：每次從 Connection Pool 取得連線時，就試著執行一次相當於 SELECT 1 的 SQL ，如果有問題，就可以重新建立新的連線取代失效的連線
+# pool_recycle = 3600：連線池時間上限，設定連線時間超過 1 小時候斷線；由於每小時會做斷線的動作，所以會與 MySQL 通訊，使 MySQL 不會閒置 8 小時
+# pool_size = 20：設定連線池大小，設定為 20 條連線
+# max_overflow=0：連線能超出連線池的數量，設定為 0 ，不得超出連線池的數量
+engine = create_engine(url_mysql, echo=True, pool_pre_ping=True, pool_recycle=3600, pool_size=20, max_overflow=0)
 
 # 創建 ORM 模型
 Base = declarative_base()
