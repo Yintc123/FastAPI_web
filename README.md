@@ -67,7 +67,7 @@ https://orders.yin888.info/
 - [X] 相隔一段時間再度發生 500 Internal Server Error 問題
     *   使用 docker ps 檢查各 Container 皆運作正常並無 Container 被停止的狀況。
     *   網頁開啟正常，但無法新增訂單及查看訂單 → web app 運作正常，推測為資料庫異常。
-    *   使用 docker exec 進入 MySQL container 並執行簡單指令 SELECT * FROM < table > → MySQL 運作正常。
+    *   使用 docker exec 進入 MySQL container 並執行簡單指令 SELECT * FROM < table > → MySQL 運作正常，推測為 web app－MySQL 的連線異常。
     *   暫停 MySQL 再重啟 MySQL 後一樣顯示 500 Internal Server Error → 資料庫不是異常的真因。
     *   暫停 Web app 再重啟 Web app 後各功能運作正常 → 網頁運作正常，推測為資料庫 timeout 設定問題。
 - [X] 檢查 Web app 的 log，log 顯示 MySQL server has gone away
