@@ -69,7 +69,7 @@ https://orders.yin888.info/
     *   網頁開啟正常，但無法新增訂單及查看訂單 → web app 運作正常，推測為資料庫異常。
     *   使用 docker exec 進入 MySQL container 並執行簡單指令 SELECT * FROM < table > 確認 MySQL 運作正常 → MySQL 運作正常。
     *   暫停 MySQL 再重啟 MySQL 後一樣顯示 500 Internal Server Error → 資料庫不是異常的真因。
-    *   暫停 Web app 再重啟 Web app 後各功能運作正常，並且資料庫的資料並未被重置 → 資料庫運作正常並且 web app 正常，推測為資料庫 timeout 設定問題。
+    *   暫停 Web app 再重啟 Web app 後各功能運作正常 → 網頁運作正常，推測為資料庫 timeout 設定問題。
 - [X] 檢查 Web app 的 log，log 顯示 MySQL server has gone away
     *   確定為資料庫 timeout 設定問題。
     *   連線閒置導致 MySQL 關閉連線，MySQL 預設的 interactive_timeout 及 wait_timeout 時間為8小時。（https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html ）
