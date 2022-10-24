@@ -73,7 +73,7 @@ https://orders.yin888.info/
 - [X] 檢查 Web app 的 log，log 顯示 MySQL server has gone away
     *   確定為資料庫 timeout 設定問題。
     *   連線閒置導致 MySQL 關閉連線，MySQL 預設的 interactive_timeout 及 wait_timeout 時間為8小時。（https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html ）
-### 真因：連線閒置導致 MySQL 關閉連線
+### 真因：長時間的連線閒置導致 MySQL 關閉連線
 ### 解決方案：
 - [ ] 設定 MySQL 的 interactive_timeout。
     *   如 MySQL 閒置時間超出 interactive_timeout 延長時間仍然會斷線導致伺服器錯誤，治標不治本。
