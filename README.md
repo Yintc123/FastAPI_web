@@ -66,7 +66,8 @@ https://orders.yin888.info/
     *   各功能測試並使用 docker log 檢查執行狀況皆無異常，排除 Web app 及 MySQL 各別運作問題。
 - [X] 相隔一段時間再度發生 500 Internal Server Error 問題
     *   使用 docker ps 檢查各 Container 皆運作正常並無 Container 被停止的狀況。
-    *   網頁開啟正常，但無法新增訂單及查看訂單 → web app 運作正常。
+    *   網頁開啟正常，但無法新增訂單及查看訂單 → web app 運作正常，推測為資料庫異常。
+    *   使用 docker exec 進入 MySQL container 並執行簡單指令 SELECT * FROM <\table> 確認 MySQL 運作正常 → MySQL 運作正常。
     *   暫停 MySQL 再重啟 MySQL 後一樣顯示 500 Internal Server Error → 資料庫不是異常的真因。
     *   暫停 Web app 再重啟 Web app 後各功能運作正常，並且資料庫的資料並未被重置 → 資料庫運作正常並且 web app 正常，推測為資料庫 timeout 設定問題。
 - [X] 檢查 Web app 的 log，log 顯示 MySQL server has gone away
@@ -75,5 +76,7 @@ https://orders.yin888.info/
 ### 真因：連線閒置導致 MySQL 關閉連線
 ### 解決方案：
 - [ ] 設定 MySQL 的 interactive_timeout。
+    *   如 MySQL 閒置時間超出 interactive_timeout 延長時間仍然會斷線導致伺服器錯誤，治標不治本。
 - [ ] Web app 定時向 MySQL 請求連線。
+    *   定時向 MySQL 送出一個 SELECT 1 的無意義請求浪費資源，治標不治本。
 - [X] SQLAlchemy 於 create_engine 設定 pool_recycle=3600，設定連線時間超過 1 小時即回收連線；由於每小時會回收連線的動作，所以會與 MySQL 通訊，使 MySQL 不會閒置 8 小時。
