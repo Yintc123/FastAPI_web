@@ -27,7 +27,7 @@ class Customer_db:
             # 返回顧客已存在
             return "Customer existed"
         customer=Customer(customer_name=name)
-        db_session.add(customer)
-        db_session.commit()
+        self.db.add(customer)
+        self.db.commit()
         self.close()
         return "Customer created"

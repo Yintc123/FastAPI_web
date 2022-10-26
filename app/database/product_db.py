@@ -27,7 +27,7 @@ class Product_db:
             # 返回產品已存在
             return "Product existed"
         product=Product(product_name=product)
-        db_session.add(product)
-        db_session.commit()
+        self.db.add(product)
+        self.db.commit()
         self.close()
         return "Product created"
