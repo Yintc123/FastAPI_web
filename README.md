@@ -30,7 +30,7 @@ https://orders.yin888.info/
     <br/>可擴展的運算容量，部署網頁應用程式。
 *   Python
     *   uvicorn
-    <br/>基於 asyncio 開發的一個輕量級高效的 web 伺服器框架。
+    <br/>WSGI，基於 asyncio 開發的一個輕量級高效的 web 伺服器框架。
     *   FastAPI
     <br/>開發網頁應用框架。
     *   HTMLResponse
