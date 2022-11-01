@@ -63,7 +63,7 @@ https://orders.yin888.info/
 ### 發生問題：500 Internal Server Error
 ### 尋找真因：
 - [X] 使用 DockerCompose 啟動 Web App 及 MySQL 時，各功能運作正常
-    *   各功能測試並使用 docker log 檢查執行狀況皆無異常，排除 Web app 及 MySQL 各別運作問題。
+    *   各功能測試並使用 docker logs 檢查執行狀況皆無異常，排除 Web app 及 MySQL 各別運作問題。
 - [X] 相隔一段時間再度發生 500 Internal Server Error 問題
     *   使用 docker ps 檢查各 Container 皆運作正常並無 Container 被停止的狀況。
     *   網頁開啟正常，但無法新增訂單及查看訂單 → web app 運作正常，推測為資料庫異常。
